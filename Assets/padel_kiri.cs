@@ -3,9 +3,9 @@ using UnityEngine;
 public class padel_kiri : MonoBehaviour
 {
     [Header("Pengaturan Paddle")]
-    public float speed = 10f;
-    public float batasAtas = 4.5f;   // Sesuaikan dengan ukuran kameramu
-    public float batasBawah = -4.5f; // Sesuaikan dengan ukuran kameramu
+    [SerializeField] private float kecepatan = 4f;
+    [SerializeField] private float batasAtas = 4.5f;   // Sesuaikan dengan ukuran kameramu
+    [SerializeField] private float batasBawah = -4.5f; // Sesuaikan dengan ukuran kameramu
 
     void Update()
     {
@@ -21,13 +21,11 @@ public class padel_kiri : MonoBehaviour
             arahY = -1f;
         }
 
-        // Hitung pergerakan
-        Vector3 posisiBaru = transform.position + new Vector3(0, arahY * speed * Time.deltaTime, 0);
+        Vector3 posisiBaru = transform.position + new Vector3(0, arahY * kecepatan * Time.deltaTime, 0);
 
-        // Kunci posisi agar tidak keluar batas atas/bawah layar
         posisiBaru.y = Mathf.Clamp(posisiBaru.y, batasBawah, batasAtas);
         
-        // Terapkan posisi baru ke paddle
+
         transform.position = posisiBaru;
     }
 }
